@@ -303,12 +303,15 @@
       document.getElementById('rev-form-wrap').style.display = 'none';
     }
 
-    window.loginWithGoogle = async function() {
-      await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: 'https://clubyvo.vercel.app/clubs/lloret-de-mar/disco-tropics.html' }
-      });
-    };
+   window.loginWithGoogle = async function() {
+  localStorage.setItem('clubyvo_redirect', window.location.href);
+  await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { 
+      redirectTo: 'https://clubyvo.vercel.app/callback.html'
+    }
+  });
+};
 
     window.logout = async function() {
       await supabase.auth.signOut();
