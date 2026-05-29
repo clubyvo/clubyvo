@@ -5,14 +5,15 @@
   <style>
     body{background:#07070a;color:#f0ece8;font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
     .msg{text-align:center}
-    .logo{font-size:2rem;font-weight:600;font-style:italic;color:#e8150a;margin-bottom:1rem}
+    .logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;font-style:italic;color:#e8150a;margin-bottom:1rem}
     .sub{font-size:0.85rem;color:#68647a}
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="msg">
     <div class="logo">clubyvo</div>
-    <div class="sub">Signing you in...</div>
+    <div class="sub" id="status">Signing you in...</div>
   </div>
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
@@ -22,29 +23,31 @@
       'sb_publishable_Fs6M6v2ib42OiXt1slm8vg_KehB_Q91'
     );
 
-    // Handle the OAuth callback — Supabase reads the URL hash/params automatically
-    const { data, error } = await supabase.auth.getSession();
-
-    // Get the page to redirect back to
     const redirect = localStorage.getItem('clubyvo_redirect') || '/';
-    localStorage.removeItem('clubyvo_redirect');
 
-    if (data.session) {
-      window.location.replace(redirect);
+    // Wait for Supabase to process the OAuth callback from URL
+    const { data: { session }, error } = await supabase.auth.getSession();
+
+    if (session) {
+      localStorage.removeItem('clubyvo_redirect');
+      document.getElementById('status').textContent = 'Signed in! Redirecting...';
+      setTimeout(() => window.location.replace(redirect), 500);
     } else {
-      // Try to get session from URL hash (implicit flow)
-      const hashParams = new URLSearchParams(window.location.hash.substring(1));
-      const accessToken = hashParams.get('access_token');
-      if (accessToken) {
-        await supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: hashParams.get('refresh_token')
-        });
-        window.location.replace(redirect);
-      } else {
-        // Fallback
-        window.location.replace(redirect);
-      }
+      // Listen for auth state change triggered by URL hash
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+          subscription.unsubscribe();
+          localStorage.removeItem('clubyvo_redirect');
+          document.getElementById('status').textContent = 'Signed in! Redirecting...';
+          setTimeout(() => window.location.replace(redirect), 500);
+        }
+      });
+
+      // Timeout fallback
+      setTimeout(() => {
+        document.getElementById('status').textContent = 'Taking longer than expected...';
+        setTimeout(() => window.location.replace(redirect), 2000);
+      }, 5000);
     }
   </script>
 </body>
