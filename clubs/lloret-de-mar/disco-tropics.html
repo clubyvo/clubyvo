@@ -306,7 +306,7 @@
     window.loginWithGoogle = async function() {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: window.location.href }
+        options: { redirectTo: 'https://clubyvo.vercel.app/clubs/lloret-de-mar/disco-tropics.html' }
       });
     };
 
