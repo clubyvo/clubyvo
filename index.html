@@ -20,7 +20,6 @@
       --yellow:#f5c400;
     }
     body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh}
-
     nav{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 2rem;border-bottom:1px solid var(--border);background:rgba(7,7,10,0.97);position:sticky;top:0;z-index:100;backdrop-filter:blur(14px)}
     .logo-img{height:46px;width:auto}
     .nav-links{display:flex;gap:0.7rem;align-items:center}
@@ -52,13 +51,14 @@
     .see-all{color:var(--red);font-family:'Outfit',sans-serif;font-size:0.82rem;text-decoration:none}
     .see-all:hover{text-decoration:underline}
 
-    /* CLUBS GRID */
     .clubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
-    .club-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;display:block;transition:all 0.22s}
+    .club-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;text-decoration:none;color:inherit;display:block;transition:all 0.22s;position:relative}
     .club-card:hover{border-color:rgba(232,21,10,0.4);transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,21,10,0.08)}
+    .club-card.soon{opacity:0.55;pointer-events:none}
     .card-thumb{height:110px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;font-style:italic;position:relative;overflow:hidden}
     .ct-bg{position:absolute;inset:0;opacity:.15}
     .ct-txt{position:relative;z-index:1}
+    .cs-badge{position:absolute;top:8px;right:8px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;padding:0.2rem 0.5rem;border-radius:10px;z-index:2}
     .card-body{padding:0.9rem 1rem}
     .card-top{display:flex;align-items:start;justify-content:space-between;margin-bottom:0.3rem}
     .card-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1rem}
@@ -72,11 +72,6 @@
     .rev-count{font-size:0.72rem;color:var(--muted)}
     .rank-num{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;font-style:italic;color:var(--red)}
 
-    /* COMING SOON BADGE */
-    .coming-soon{position:relative;opacity:0.6;pointer-events:none}
-    .cs-badge{position:absolute;top:10px;right:10px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;padding:0.2rem 0.5rem;border-radius:10px}
-
-    /* GENRE GRID */
     .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem}
     .cat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;text-align:center;padding:1.3rem 0.8rem;text-decoration:none;color:inherit;display:block;transition:all 0.22s}
     .cat-card:hover{border-color:var(--red);transform:translateY(-2px)}
@@ -84,20 +79,13 @@
     .cat-name{font-weight:500;font-size:0.88rem;margin-bottom:0.2rem}
     .cat-count{font-size:0.72rem;color:var(--muted)}
 
-    /* CITIES */
     .cities-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
     .city-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-decoration:none;color:inherit;display:flex;align-items:center;justify-content:space-between;transition:all 0.22s}
     .city-card:hover{border-color:var(--red);transform:translateY(-2px)}
     .city-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;font-style:italic}
     .city-count{font-size:0.75rem;color:var(--muted)}
     .city-arrow{color:var(--red)}
-
-    /* HOW IT WORKS */
-    .how-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
-    .how-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
-    .how-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;font-style:italic;color:var(--red);line-height:1;margin-bottom:0.7rem}
-    .how-title{font-weight:500;font-size:0.95rem;margin-bottom:0.4rem}
-    .how-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300}
+    .city-card.soon{opacity:0.5;pointer-events:none}
 
     footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:0.78rem;margin-top:2rem}
     footer a{color:var(--muted);text-decoration:none;margin:0 0.75rem}
@@ -112,7 +100,7 @@
     <div class="nav-links">
       <a href="milan.html" class="nav-btn">Milan</a>
       <a href="lloret-de-mar.html" class="nav-btn">Lloret de Mar</a>
-      <a href="milan.html" class="nav-btn cta">Explore Rankings</a>
+      <a href="#" class="nav-btn cta">Add Your Club</a>
     </div>
   </nav>
 
@@ -128,72 +116,104 @@
   </div>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num">12,400+</div><div class="stat-label">Clubs Listed</div></div>
-    <div class="stat"><div class="stat-num">890K+</div><div class="stat-label">Real Reviews</div></div>
-    <div class="stat"><div class="stat-num">143</div><div class="stat-label">Countries</div></div>
-    <div class="stat"><div class="stat-num">4.2M</div><div class="stat-label">Clubbers</div></div>
+    <div class="stat"><div class="stat-num">28</div><div class="stat-label">Clubs Listed</div></div>
+    <div class="stat"><div class="stat-num" id="reviews-count">0</div><div class="stat-label">Real Reviews</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Countries</div></div>
+    <div class="stat"><div class="stat-num" id="clubbers-count">1,200</div><div class="stat-label">Clubbers</div></div>
   </div>
 
-  <!-- TOP CLUBS -->
+  <!-- TOP CLUBS — only real ones, others coming soon -->
   <section>
     <div class="sec-hd">
-      <div class="sec-title">World <span>Top Clubs</span></div>
-      <a href="milan.html" class="see-all">See all rankings →</a>
+      <div class="sec-title">Featured <span>Clubs</span></div>
+      <a href="milan.html" class="see-all">See all →</a>
     </div>
     <div class="clubs-grid">
+
+      <!-- REAL: Disco Tropics — has a page -->
+      <a href="clubs/lloret-de-mar/disco-tropics.html" class="club-card">
+        <div class="card-thumb" style="background:#150e00"><div class="ct-bg" style="background:#ffcc40"></div><div class="ct-txt" style="color:#ffcc40">TR</div></div>
+        <div class="card-body">
+          <div class="card-top"><div class="card-name">Disco Tropics</div></div>
+          <div class="card-city">📍 Lloret de Mar, Spain</div>
+          <div class="tags"><span class="tag tag-music">EDM</span><span class="tag tag-vibe">Superclub</span></div>
+          <div class="card-footer"><div class="rev-count">💬 Be the first to review</div></div>
+        </div>
+      </a>
+
+      <!-- REAL: The Club Milano — has a page -->
       <a href="milan.html" class="club-card">
-        <div class="card-thumb" style="background:#1a0a0a"><div class="ct-bg" style="background:#ff6060"></div><div class="ct-txt" style="color:#ff6060">BG</div></div>
-        <div class="card-body"><div class="card-top"><div class="card-name">Berghain</div><div class="r-badge">★ 9.7</div></div><div class="card-city">📍 Berlin, Germany</div><div class="tags"><span class="tag tag-music">Techno</span><span class="tag tag-vibe">Underground</span></div><div class="card-footer"><div class="rev-count">💬 24,300 reviews</div><div class="rank-num">#1</div></div></div>
+        <div class="card-thumb" style="background:#150010"><div class="ct-bg" style="background:#ff60c0"></div><div class="ct-txt" style="color:#ff60c0">TC</div></div>
+        <div class="card-body">
+          <div class="card-top"><div class="card-name">The Club Milano</div></div>
+          <div class="card-city">📍 Milan, Italy</div>
+          <div class="tags"><span class="tag tag-music">House</span><span class="tag tag-vibe">Commercial</span></div>
+          <div class="card-footer"><div class="rev-count">💬 Be the first to review</div></div>
+        </div>
       </a>
+
+      <!-- REAL: Hollywood Milano -->
       <a href="milan.html" class="club-card">
-        <div class="card-thumb" style="background:#0a0a1a"><div class="ct-bg" style="background:#6080ff"></div><div class="ct-txt" style="color:#6080ff">FB</div></div>
-        <div class="card-body"><div class="card-top"><div class="card-name">Fabric</div><div class="r-badge">★ 9.4</div></div><div class="card-city">📍 London, UK</div><div class="tags"><span class="tag tag-music">House</span><span class="tag tag-vibe">Iconic</span></div><div class="card-footer"><div class="rev-count">💬 18,700 reviews</div><div class="rank-num">#2</div></div></div>
+        <div class="card-thumb" style="background:#100808"><div class="ct-bg" style="background:#ff8060"></div><div class="ct-txt" style="color:#ff8060">HW</div></div>
+        <div class="card-body">
+          <div class="card-top"><div class="card-name">Hollywood Milano</div></div>
+          <div class="card-city">📍 Milan, Italy</div>
+          <div class="tags"><span class="tag tag-music">EDM</span><span class="tag tag-vibe">Iconic</span></div>
+          <div class="card-footer"><div class="rev-count">💬 Be the first to review</div></div>
+        </div>
       </a>
-      <a href="lloret-de-mar.html" class="club-card">
-        <div class="card-thumb" style="background:#0a1508"><div class="ct-bg" style="background:#60d080"></div><div class="ct-txt" style="color:#60d080">AM</div></div>
-        <div class="card-body"><div class="card-top"><div class="card-name">Amnesia Ibiza</div><div class="r-badge">★ 9.3</div></div><div class="card-city">📍 Ibiza, Spain</div><div class="tags"><span class="tag tag-music">House</span><span class="tag tag-vibe">Open Air</span></div><div class="card-footer"><div class="rev-count">💬 31,200 reviews</div><div class="rank-num">#3</div></div></div>
-      </a>
+
+      <!-- REAL: Alcatraz Milano -->
       <a href="milan.html" class="club-card">
-        <div class="card-thumb" style="background:#080d14"><div class="ct-bg" style="background:#60b8ff"></div><div class="ct-txt" style="color:#60b8ff">WG</div></div>
-        <div class="card-body"><div class="card-top"><div class="card-name">Watergate</div><div class="r-badge">★ 9.0</div></div><div class="card-city">📍 Berlin, Germany</div><div class="tags"><span class="tag tag-music">House</span><span class="tag tag-vibe">Riverside</span></div><div class="card-footer"><div class="rev-count">💬 9,800 reviews</div><div class="rank-num">#4</div></div></div>
+        <div class="card-thumb" style="background:#0a0a18"><div class="ct-bg" style="background:#6080ff"></div><div class="ct-txt" style="color:#6080ff">AL</div></div>
+        <div class="card-body">
+          <div class="card-top"><div class="card-name">Alcatraz Milano</div></div>
+          <div class="card-city">📍 Milan, Italy</div>
+          <div class="tags"><span class="tag tag-music">Live / Electronic</span><span class="tag tag-vibe">Warehouse</span></div>
+          <div class="card-footer"><div class="rev-count">💬 Be the first to review</div></div>
+        </div>
       </a>
+
     </div>
   </section>
 
-  <!-- BROWSE BY GENRE -->
-  <section>
-    <div class="sec-hd"><div class="sec-title">Browse by <span>Genre</span></div></div>
-    <div class="cat-grid">
-      <a href="milan.html" class="cat-card"><div class="cat-icon">🎛️</div><div class="cat-name">Techno</div><div class="cat-count">3.2K clubs</div></a>
-      <a href="milan.html" class="cat-card"><div class="cat-icon">🎵</div><div class="cat-name">House</div><div class="cat-count">4.1K clubs</div></a>
-      <a href="milan.html" class="cat-card"><div class="cat-icon">🎤</div><div class="cat-name">Hip-Hop</div><div class="cat-count">2.8K clubs</div></a>
-      <a href="lloret-de-mar.html" class="cat-card"><div class="cat-icon">⚡</div><div class="cat-name">EDM</div><div class="cat-count">1.9K clubs</div></a>
-      <a href="milan.html" class="cat-card"><div class="cat-icon">🎸</div><div class="cat-name">R&amp;B</div><div class="cat-count">1.5K clubs</div></a>
-      <a href="lloret-de-mar.html" class="cat-card"><div class="cat-icon">🔥</div><div class="cat-name">Reggaeton</div><div class="cat-count">2.2K clubs</div></a>
-    </div>
-  </section>
-
-  <!-- CITIES -->
+  <!-- BROWSE BY CITY -->
   <section>
     <div class="sec-hd"><div class="sec-title">Browse by <span>City</span></div></div>
     <div class="cities-grid">
-      <a href="milan.html" class="city-card"><div><div class="city-name">Milan</div><div class="city-count">48 clubs listed</div></div><span class="city-arrow">→</span></a>
-      <a href="lloret-de-mar.html" class="city-card"><div><div class="city-name">Lloret de Mar</div><div class="city-count">34 clubs listed</div></div><span class="city-arrow">→</span></a>
-      <div class="city-card coming-soon" style="position:relative"><div><div class="city-name">Berlin</div><div class="city-count">Coming soon</div></div><span class="cs-badge">soon</span></div>
-      <div class="city-card coming-soon" style="position:relative"><div><div class="city-name">Ibiza</div><div class="city-count">Coming soon</div></div><span class="cs-badge">soon</span></div>
-      <div class="city-card coming-soon" style="position:relative"><div><div class="city-name">London</div><div class="city-count">Coming soon</div></div><span class="cs-badge">soon</span></div>
-      <div class="city-card coming-soon" style="position:relative"><div><div class="city-name">Barcelona</div><div class="city-count">Coming soon</div></div><span class="cs-badge">soon</span></div>
+      <a href="milan.html" class="city-card"><div><div class="city-name">Milan</div><div class="city-count">15 clubs listed</div></div><span class="city-arrow">→</span></a>
+      <a href="lloret-de-mar.html" class="city-card"><div><div class="city-name">Lloret de Mar</div><div class="city-count">13 clubs listed</div></div><span class="city-arrow">→</span></a>
+      <div class="city-card soon"><div><div class="city-name">Berlin</div><div class="city-count">Coming soon</div></div></div>
+      <div class="city-card soon"><div><div class="city-name">Ibiza</div><div class="city-count">Coming soon</div></div></div>
+      <div class="city-card soon"><div><div class="city-name">Barcelona</div><div class="city-count">Coming soon</div></div></div>
+      <div class="city-card soon"><div><div class="city-name">Rome</div><div class="city-count">Coming soon</div></div></div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
   <section id="how">
     <div class="sec-hd"><div class="sec-title">How <span>it works</span></div></div>
-    <div class="how-grid">
-      <div class="how-card"><div class="how-num">1</div><div class="how-title">Find a club</div><div class="how-desc">Search by city, genre, vibe or capacity. Filter exactly what you're looking for.</div></div>
-      <div class="how-card"><div class="how-num">2</div><div class="how-title">Read real reviews</div><div class="how-desc">Every review is from a verified person who was actually there. No bots, no fakes.</div></div>
-      <div class="how-card"><div class="how-num">3</div><div class="how-title">Sign in & review</div><div class="how-desc">Log in with Google and leave your own review. Rate music, sound, bar and door policy.</div></div>
-      <div class="how-card"><div class="how-num">4</div><div class="how-title">Rankings update</div><div class="how-desc">The more reviews a club gets, the more accurate its ranking becomes. Real data only.</div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;font-style:italic;color:var(--red);line-height:1;margin-bottom:0.7rem">1</div>
+        <div style="font-weight:500;font-size:0.95rem;margin-bottom:0.4rem">Find a club</div>
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300">Search by city, genre or vibe. Filter exactly what you're looking for.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;font-style:italic;color:var(--red);line-height:1;margin-bottom:0.7rem">2</div>
+        <div style="font-weight:500;font-size:0.95rem;margin-bottom:0.4rem">Read real reviews</div>
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300">Every review is from a verified person who was actually there. No bots, no fakes.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;font-style:italic;color:var(--red);line-height:1;margin-bottom:0.7rem">3</div>
+        <div style="font-weight:500;font-size:0.95rem;margin-bottom:0.4rem">Sign in & review</div>
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300">Log in with Google and leave your own review. Rate music, sound, bar and door policy.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;font-style:italic;color:var(--red);line-height:1;margin-bottom:0.7rem">4</div>
+        <div style="font-weight:500;font-size:0.95rem;margin-bottom:0.4rem">Rankings update</div>
+        <div style="font-size:0.82rem;color:var(--muted);line-height:1.6;font-weight:300">The more reviews a club gets, the more accurate its ranking becomes. Real data only.</div>
+      </div>
     </div>
   </section>
 
