@@ -263,23 +263,6 @@
     © 2025 clubyvo — real nightlife reviews from real clubbers
   </footer>
 
-  <!DOCTYPE html>
-<html>
-<head>
-  <title>Signing in... | clubyvo</title>
-  <style>
-    body{background:#07070a;color:#f0ece8;font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
-    .msg{text-align:center}
-    .logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;font-style:italic;color:#e8150a;margin-bottom:1rem}
-    .sub{font-size:0.85rem;color:#68647a}
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="msg">
-    <div class="logo">clubyvo</div>
-    <div class="sub" id="status">Signing you in...</div>
-  </div>
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
@@ -288,32 +271,101 @@
       'sb_publishable_Fs6M6v2ib42OiXt1slm8vg_KehB_Q91'
     );
 
-    const redirect = localStorage.getItem('clubyvo_redirect') || '/';
+    let overallStar = 0;
+    const catRatings = {music:0, bar:0, door:0, sound:0};
 
-    // Wait for Supabase to process the OAuth callback from URL
-    const { data: { session }, error } = await supabase.auth.getSession();
+    // Check session on load
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) updateUI(session.user);
+    }
 
-    if (session) {
-      localStorage.removeItem('clubyvo_redirect');
-      document.getElementById('status').textContent = 'Signed in! Redirecting...';
-      setTimeout(() => window.location.replace(redirect), 500);
-    } else {
-      // Listen for auth state change triggered by URL hash
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-          subscription.unsubscribe();
-          localStorage.removeItem('clubyvo_redirect');
-          document.getElementById('status').textContent = 'Signed in! Redirecting...';
-          setTimeout(() => window.location.replace(redirect), 500);
-        }
+    // Listen for auth changes (catches redirect back from Google)
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) updateUI(session.user);
+      else resetUI();
+    });
+
+    function updateUI(user) {
+      const name = user.user_metadata?.full_name || user.email || 'User';
+      const initials = name.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase();
+      document.getElementById('userAvatar').textContent = initials;
+      document.getElementById('userName').textContent = name.split(' ')[0];
+      document.getElementById('userPill').style.display = 'flex';
+      document.getElementById('rev-gate').style.display = 'none';
+      document.getElementById('rev-form-wrap').style.display = 'block';
+      document.getElementById('rf-user-label').textContent = 'Signed in as ' + name;
+    }
+
+    function resetUI() {
+      document.getElementById('userPill').style.display = 'none';
+      document.getElementById('rev-gate').style.display = 'block';
+      document.getElementById('rev-form-wrap').style.display = 'none';
+    }
+
+    window.loginWithGoogle = async function() {
+      await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.href }
+      });
+    };
+
+    window.logout = async function() {
+      await supabase.auth.signOut();
+    };
+
+    window.setStar = function(v) {
+      overallStar = v;
+      document.querySelectorAll('#star-pick .sp-star').forEach((s,i) => s.classList.toggle('son', i < v));
+    };
+
+    window.setMS = function(cat, v) {
+      catRatings[cat] = v;
+      document.querySelectorAll('#cm-'+cat+' .ms').forEach((s,i) => s.classList.toggle('mon', i < v));
+    };
+
+    window.submitReview = async function() {
+      if (!overallStar) { alert('Please select an overall rating.'); return; }
+      if (!document.getElementById('v-month').value || !document.getElementById('v-year').value) { alert('Please tell us when you visited.'); return; }
+      const text = document.getElementById('rev-text').value.trim();
+      if (text.length < 30) { alert('Please write at least 30 characters.'); return; }
+
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { alert('Please sign in first.'); return; }
+
+      const { error } = await supabase.from('reviews').insert({
+        club_id: 'disco-tropics-lloret',
+        user_id: user.id,
+        overall: overallStar,
+        music: catRatings.music || null,
+        bar: catRatings.bar || null,
+        door: catRatings.door || null,
+        sound: catRatings.sound || null,
+        visit_month: document.getElementById('v-month').value,
+        visit_year: parseInt(document.getElementById('v-year').value),
+        text: text,
+        provider: user.app_metadata?.provider || 'google',
+        status: 'published'
       });
 
-      // Timeout fallback
-      setTimeout(() => {
-        document.getElementById('status').textContent = 'Taking longer than expected...';
-        setTimeout(() => window.location.replace(redirect), 2000);
-      }, 5000);
-    }
+      if (error) {
+        if (error.code === '23505') { alert('You have already reviewed this club.'); }
+        else { alert('Error: ' + error.message); }
+        return;
+      }
+
+      document.getElementById('rev-form-wrap').style.display = 'none';
+      document.getElementById('suc-box').style.display = 'block';
+    };
+
+    window.switchTab = function(tab, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('tc-'+tab).classList.add('active');
+    };
+
+    init();
   </script>
 </body>
 </html>
