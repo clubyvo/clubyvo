@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabase = createClient(
+      'https://gbuyfaxryuoykbkleppm.supabase.co',
+      'sb_publishable_Fs6M6v2ib42OiXt1slm8vg_KehB_Q91'
+    );
+    const { data, error } = await supabase.auth.exchangeCodeForSession(window.location.search);
+    const redirect = localStorage.getItem('clubyvo_redirect') || '/';
+    localStorage.removeItem('clubyvo_redirect');
+    window.location.href = redirect;
+  </script>
+</head>
+<body></body>
+</html>
