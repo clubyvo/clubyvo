@@ -287,9 +287,18 @@
     function showLoginForm() {
       document.getElementById('login-form').style.display = 'block';
     }
-    function loginWith(provider) {
-      alert('Login with ' + provider + ' coming soon! This will connect to Supabase auth.');
-    }
+   async function loginWith(provider) {
+  const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm');
+  const supabase = createClient(
+    'https://gbuyfaxryuoykbkleppm.supabase.co',
+    'sb_publishable_Fs6M6v2ib42OiXt1slm8vg_KehB_Q91'
+  );
+  const p = provider.toLowerCase();
+  await supabase.auth.signInWithOAuth({
+    provider: p,
+    options: { redirectTo: window.location.href }
+  });
+}
   </script>
 </body>
 </html>
