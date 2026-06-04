@@ -1,21 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.clubyvo.com/</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.clubyvo.com/milan.html</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.clubyvo.com/lloret-de-mar.html</loc>
-    <lastmod>2025-05-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
+  <!-- MAIN PAGES -->
+  <url><loc>https://www.clubyvo.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.clubyvo.com/milan.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.clubyvo.com/barcelona.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.clubyvo.com/lloret-de-mar.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- MILAN CLUBS -->
+  <url><loc>https://www.clubyvo.com/clubs/milan/the-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/hollywood-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/alcatraz-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/gattopardo-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/the-beach-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/amnesia-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/tunnel-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/11clubroom-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/play-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/loolapaloosa-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/lime-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/milan/aria-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- LLORET DE MAR CLUBS -->
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/disco-tropics.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/disco-prive.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/st-trop.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/gala-cccp.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/gotham.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/disco-hollywood.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/texas-disco-pub.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/leblanc.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/revolution-disco.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/alcatraz.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/moef-gaga.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/lloret-de-mar/sanddance.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- BARCELONA CLUBS -->
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/opium-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/shoko-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/pacha-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/razzmatazz-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/sala-apolo-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/input-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/moog-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/macarena-club-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/barcelona/otto-zutz-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
 </urlset>
