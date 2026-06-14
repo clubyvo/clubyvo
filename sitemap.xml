@@ -6,6 +6,7 @@
   <url><loc>https://www.clubyvo.com/milan.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.clubyvo.com/barcelona.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.clubyvo.com/lloret-de-mar.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.clubyvo.com/ibiza.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
   <!-- MILAN CLUBS -->
   <url><loc>https://www.clubyvo.com/clubs/milan/the-club-milano.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -45,5 +46,24 @@
   <url><loc>https://www.clubyvo.com/clubs/barcelona/moog-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.clubyvo.com/clubs/barcelona/macarena-club-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.clubyvo.com/clubs/barcelona/otto-zutz-barcelona.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- IBIZA CLUBS -->
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/unvrs-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/pacha-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/amnesia-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/hi-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/ushuaia-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/dc10-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/cova-santa-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/club-chinois-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/lio-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/o-beach-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/eden-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/es-paradis-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/destino-five-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/528-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/akasha-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/soul-city-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.clubyvo.com/clubs/ibiza/plastik-ibiza.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 </urlset>
